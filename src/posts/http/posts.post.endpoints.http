@@ -1,0 +1,19 @@
+POST /posts HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+
+{
+    "title": "New Post 5",
+    "postType": "post",
+    "slug": "new-post-5",
+    "status": "draft",
+    "content": "This is the content of the post 5.",
+    "schema": "{\r\n    \"@context\": \"https:\/\/schema.org\",\r\n    \"@type\": \"Person\"\r\n  }",
+    "featuredImageURL": "http://localhost.com/images/image1.jpg",
+    "publishOn": "2024-03-16T07:46:32+0000",
+    "tags": [1],
+    "metaOptions": {
+        "metaValue": "{\"sidebarEnabled\": true, \"footerActive\": true}"
+    },
+    "authorId": 3
+}

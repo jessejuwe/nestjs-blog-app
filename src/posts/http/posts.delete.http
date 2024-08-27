@@ -1,0 +1,3 @@
+DELETE /posts
+Host: localhost:3000
+?id=6

@@ -1,0 +1,5 @@
+GET /posts 
+Host: localhost:3000
+
+GET /posts/3
+Host: localhost:3000
