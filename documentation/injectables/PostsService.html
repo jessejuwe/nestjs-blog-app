@@ -123,7 +123,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Service responsible for handling posts data</p>
+                <p>Service responsible for managing posts</p>
 
             </p>
 
@@ -160,6 +160,11 @@
                             <li>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
+                                <a href="#findAllByUserId" >findAllByUserId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
                                 <a href="#findOne" >findOne</a>
                             </li>
                             <li>
@@ -185,12 +190,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(usersService: <a href="../injectables/UsersService.html" target="_self">UsersService</a>, postRepository: <a href="../entitys/Post.html" target="_self">Repository&lt;Post&gt;</a>, metaOptionRepository: <a href="../entitys/MetaOption.html" target="_self">Repository&lt;MetaOption&gt;</a>)</code>
+<code>constructor(usersService: <a href="../injectables/UsersService.html" target="_self">UsersService</a>, tagsService: <a href="../injectables/TagsService.html" target="_self">TagsService</a>, postsRepository: <a href="../entitys/Post.html" target="_self">Repository&lt;Post&gt;</a>, metaOptionRepository: <a href="../entitys/MetaOption.html" target="_self">Repository&lt;MetaOption&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/posts/providers/posts.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/posts/providers/posts.service.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -222,7 +227,19 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>postRepository</td>
+                                                        <td>tagsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TagsService.html" target="_self" >TagsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>postsRepository</td>
                                                   
                                                         <td>
                                                                         <code><a href="../entitys/Post.html" target="_self" >Repository&lt;Post&gt;</a></code>
@@ -282,8 +299,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/posts/providers/posts.service.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/posts/providers/posts.service.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -355,8 +372,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="119"
-                                    class="link-to-prism">src/posts/providers/posts.service.ts:119</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="203"
+                                    class="link-to-prism">src/posts/providers/posts.service.ts:203</a></div>
                         </td>
                     </tr>
 
@@ -375,6 +392,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -389,6 +407,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>number describing the post ID</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -398,7 +420,7 @@
 
                         </div>
                             <div class="io-description">
-                                <p>string</p>
+                                <p>object</p>
 
                             </div>
                 </td>
@@ -421,15 +443,93 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findAll(query?: <a href="../entitys/Post.html" target="_self">GetPostsQueryDto</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/posts/providers/posts.service.ts:63</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/posts/providers/posts.service.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>The method to get all posts form the database</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>query</td>
+                                            <td>
+                                                            <code><a href="../entitys/Post.html" target="_self" >GetPostsQueryDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>GetPostsQueryDto for getting queries</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Post[]</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllByUserId"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>findAllByUserId</b></span>
+                        <a href="#findAllByUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllByUserId(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="101"
+                                    class="link-to-prism">src/posts/providers/posts.service.ts:101</a></div>
                         </td>
                     </tr>
 
@@ -501,8 +601,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="89"
-                                    class="link-to-prism">src/posts/providers/posts.service.ts:89</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/posts/providers/posts.service.ts:129</a></div>
                         </td>
                     </tr>
 
@@ -521,6 +621,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -535,6 +636,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>number describing the post ID</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -567,15 +672,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, patchPostDto: <a href="../classes/PatchPostDto.html" target="_self">PatchPostDto</a>)</code>
+                    <code>update(patchPostDto: <a href="../classes/PatchPostDto.html" target="_self">PatchPostDto</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="109"
-                                    class="link-to-prism">src/posts/providers/posts.service.ts:109</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="152"
+                                    class="link-to-prism">src/posts/providers/posts.service.ts:152</a></div>
                         </td>
                     </tr>
 
@@ -594,21 +699,10 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                                <td>id</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
                                         <tr>
                                                 <td>patchPostDto</td>
                                             <td>
@@ -620,6 +714,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>A DTO used to validate args</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -629,7 +727,7 @@
 
                         </div>
                             <div class="io-description">
-                                <p>any</p>
+                                <p>Post</p>
 
                             </div>
                 </td>
@@ -643,19 +741,25 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
-import { BadRequestException, NotFoundException } from &#x27;@nestjs/common&#x27;;
+import {
+  BadRequestException,
+  NotFoundException,
+  RequestTimeoutException,
+} from &#x27;@nestjs/common&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 
 import { CreatePostDto } from &#x27;../dtos/create-post.dto&#x27;;
+import { GetPostsQueryDto } from &#x27;../dtos/get-post-query.dto&#x27;;
 import { PatchPostDto } from &#x27;../dtos/patch-post.dto&#x27;;
+import { Post } from &#x27;../entities/post.entity&#x27;;
 
 import { UsersService } from &#x27;src/users/providers/users.service&#x27;;
-import { Post } from &#x27;../entities/post.entity&#x27;;
 import { MetaOption } from &#x27;src/meta-options/entities/meta-option.entity&#x27;;
+import { TagsService } from &#x27;src/tags/providers/tags.service&#x27;;
 
 /**
- * Service responsible for handling posts data
+ * Service responsible for managing posts
  */
 @Injectable()
 export class PostsService {
@@ -663,13 +767,15 @@ export class PostsService {
    * Constructor of Posts service
    * @description Injects UsersService, PostRepository and MetaOptionRepository
    * @param usersService
-   * @param postRepository
+   * @param postsRepository
    * @param metaOptionRepository
    */
   constructor(
     private readonly usersService: UsersService,
+    private readonly tagsService: TagsService,
+
     @InjectRepository(Post)
-    private readonly postRepository: Repository&lt;Post&gt;,
+    private readonly postsRepository: Repository&lt;Post&gt;,
     @InjectRepository(MetaOption)
     private readonly metaOptionRepository: Repository&lt;MetaOption&gt;,
   ) {}
@@ -682,19 +788,16 @@ export class PostsService {
   public async create(createPostDto: CreatePostDto) {
     try {
       // Find author based on authorId from database
-      const author &#x3D; await this.usersService.findOneById(
-        createPostDto.authorId,
-      );
+      const author &#x3D; await this.usersService.findOneById(createPostDto.authorId); // prettier-ignore
 
-      if (!author) {
-        throw new NotFoundException(&#x27;User not found&#x27;);
-      }
+      // Find tags
+      const tags &#x3D; await this.tagsService.findMultipleTags(createPostDto.tags);
 
       // Create post
-      const post &#x3D; this.postRepository.create({ ...createPostDto, author });
+      const post &#x3D; this.postsRepository.create({ ...createPostDto, author, tags }); // prettier-ignore
 
       // Return post
-      return await this.postRepository.save(post);
+      return await this.postsRepository.save(post);
     } catch (error) {
       throw new BadRequestException(error);
     }
@@ -702,73 +805,154 @@ export class PostsService {
 
   /**
    * The method to get all posts form the database
+   * @param query GetPostsQueryDto for getting queries
    * @returns Post[]
    */
-  public async findAll(userId: number) {
-    try {
-      // if (userId) {
-      // }
-      const author &#x3D; await this.usersService.findOneById(userId);
+  public async findAll(query?: GetPostsQueryDto) {
+    const { page, limit } &#x3D; query;
 
-      const posts &#x3D; await this.postRepository.find({
-        where: { author },
-        relations: { metaOptions: true, author: true }, // ALTERNATIVE: to eager loading in entity
+    let foundPosts: Post[] &#x3D; [];
+
+    try {
+      const [posts] &#x3D; await this.postsRepository.findAndCount({
+        relations: { metaOptions: true, author: true, tags: true }, // ALTERNATIVE: to eager loading in entity
+        skip: (page - 1) * limit,
+        take: limit,
       });
 
-      if (!posts) {
-        throw new NotFoundException(&#x27;No posts found&#x27;);
-      }
-
-      return posts;
+      foundPosts &#x3D; posts;
     } catch (error) {
-      throw new BadRequestException(error);
+      throw new RequestTimeoutException(&#x27;Unable to process request&#x27;, {
+        description: &#x27;Database connection error&#x27;,
+      });
     }
+
+    if (!foundPosts) {
+      throw new NotFoundException(&#x27;Adjust page and limit query&#x27;, {
+        description: &#x27;Posts not found&#x27;,
+      });
+    }
+
+    return foundPosts;
+  }
+
+  /**
+   * The method to get all posts form the database
+   * @returns Post[]
+   */
+  public async findAllByUserId(userId: number) {
+    const author &#x3D; await this.usersService.findOneById(userId);
+
+    let posts &#x3D; undefined;
+
+    try {
+      posts &#x3D; await this.postsRepository.find({
+        where: { author },
+        relations: { metaOptions: true, author: true, tags: true }, // ALTERNATIVE: to eager loading in entity
+      });
+    } catch (error) {
+      throw new RequestTimeoutException(&#x27;Unable to process request&#x27;, {
+        description: &#x27;Database connection error&#x27;,
+      });
+    }
+
+    if (!posts) {
+      throw new NotFoundException(&#x27;User does not exist&#x27;);
+    }
+
+    return posts;
   }
 
   /**
    * The method to get a single post by ID
-   * @param id
+   * @param id number describing the post ID
    * @returns Post
    */
   public async findOne(id: number) {
+    let post &#x3D; undefined;
+
     try {
-      const post &#x3D; await this.postRepository.findOne({ where: { id } });
-
-      if (!post) {
-        throw new NotFoundException(&#x27;No post found&#x27;);
-      }
-
-      return post;
+      post &#x3D; await this.postsRepository.findOne({ where: { id } });
     } catch (error) {
-      throw new BadRequestException(error);
+      throw new RequestTimeoutException(&#x27;Unable to process request&#x27;, {
+        description: &#x27;Database connection error&#x27;,
+      });
     }
+
+    if (!post) {
+      throw new NotFoundException(&#x27;Post id does not exist&#x27;);
+    }
+
+    return post;
   }
 
   /**
    * The method to update a post in the database
-   * @param id
-   * @param patchPostDto
-   * @returns any
+   * @param patchPostDto A DTO used to validate args
+   * @returns Post
    */
-  public async update(id: number, patchPostDto: PatchPostDto) {
-    const data &#x3D; { id, ...patchPostDto };
-    return data;
+  public async update(patchPostDto: PatchPostDto) {
+    // Find new tags
+    const tags &#x3D; await this.tagsService.findMultipleTags(patchPostDto.tags);
+
+    if (tags.length !&#x3D;&#x3D; patchPostDto.tags.length) {
+      throw new BadRequestException(&#x27;Tags mismatch&#x27;);
+    }
+
+    let post &#x3D; undefined;
+
+    try {
+      // Find the post
+      post &#x3D; await this.postsRepository.findOneBy({
+        id: patchPostDto.id,
+      });
+    } catch (error) {
+      throw new RequestTimeoutException(&#x27;Unable to process request&#x27;, {
+        description: &#x27;Database connection error&#x27;,
+      });
+    }
+
+    if (!post) {
+      throw new BadRequestException(&#x27;Post id does not exist&#x27;);
+    }
+
+    // Update post related properties (Nullish coalescing operator)
+    post.title &#x3D; patchPostDto.title ?? post.title;
+    post.content &#x3D; patchPostDto.content ?? post.content;
+    post.status &#x3D; patchPostDto.status ?? post.status;
+    post.postType &#x3D; patchPostDto.postType ?? post.postType;
+    post.slug &#x3D; patchPostDto.slug ?? post.slug;
+    post.featuredImageURL &#x3D; patchPostDto.featuredImageURL ?? post.featuredImageURL; // prettier-ignore
+    post.publishOn &#x3D; patchPostDto.publishOn ?? post.publishOn;
+
+    // Update the tags
+    post.tags &#x3D; tags;
+
+    try {
+      return await this.postsRepository.save(post);
+    } catch (error) {
+      throw new RequestTimeoutException(&#x27;Unable to process request&#x27;, {
+        description: &#x27;Database connection error&#x27;,
+      });
+    }
   }
 
   /**
    * The method to remove a post from the database
-   * @param id
-   * @returns string
+   * @param id number describing the post ID
+   * @returns object
    */
   public async delete(id: number) {
     try {
       // Delete the post
-      await this.postRepository.delete(id);
+      await this.postsRepository.delete(id);
 
       // Return confirmation message
       return { deleted: true, id };
     } catch (error) {
-      throw new NotFoundException(error);
+      throw new RequestTimeoutException(&#x27;Unable to process request&#x27;, {
+        description: &#x27;Database connection error&#x27;,
+      });
     }
   }
 }

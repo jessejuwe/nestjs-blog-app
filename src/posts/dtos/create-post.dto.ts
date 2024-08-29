@@ -9,7 +9,6 @@ import { Type } from 'class-transformer';
 import { PostStatus } from '../enums/postStatus.enum';
 import { PostType } from '../enums/postType.enum';
 import { CreatePostMetaOptionsDto } from 'src/meta-options/dtos/create-post-meta-options.dto';
-// import { CreateTagDto } from 'src/tags/dtos/create-tag.dto';
 
 /**
  * Data transfer object (DTO) for creating a post.

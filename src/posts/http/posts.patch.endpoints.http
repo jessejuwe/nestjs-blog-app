@@ -1,8 +1,15 @@
-PATCH /posts/1
+PATCH /posts
 Host: localhost:3000
 Content-Type: application/json
 
 {
-    "id": 1,
-    "title": "Updated post title"
+    "id": 7,
+    "title": "Updated Post 4",
+    "postType": "story",
+    "status": "review",
+    "content": "This is the updated content of the post.",
+    "tags": [1, 2],
+    "metaOptions": {
+        "metaValue": "{\"sidebarEnabled\": true, \"footerActive\": true}"
+    }
 }

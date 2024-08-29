@@ -9,3 +9,26 @@ Content-Type: application/json
     "password": "password123#",
     "isAuth": false
 }
+
+POST /users/create-many
+Host: localhost:3000
+Content-Type: application/json
+
+{
+    "users": [
+        {
+            "firstName": "Jaden",
+            "lastName": "Smith",
+            "email": "jadensmith@example.com",
+            "password": "password123#",
+            "isAuth": false
+        },
+        {
+            "firstName": "Willow",
+            "lastName": "Smith",
+            "email": "jane.doe@example.com",
+            "password": "password123#",
+            "isAuth": false
+        }
+    ]
+}

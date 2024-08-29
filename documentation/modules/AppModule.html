@@ -306,6 +306,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
 import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
+import { ConfigModule, ConfigService } from &#x27;@nestjs/config&#x27;;
 
 import { AppController } from &#x27;./app.controller&#x27;;
 import { AuthModule } from &#x27;./auth/auth.module&#x27;;
@@ -314,6 +315,14 @@ import { PostsModule } from &#x27;./posts/posts.module&#x27;;
 import { UsersModule } from &#x27;./users/users.module&#x27;;
 import { TagsModule } from &#x27;./tags/tags.module&#x27;;
 import { MetaOptionsModule } from &#x27;./meta-options/meta-options.module&#x27;;
+import appConfig from &#x27;./config/app.config&#x27;;
+import databaseConfig from &#x27;./config/database.config&#x27;;
+import environmentSchema from &#x27;./config/environment.validation&#x27;;
+
+/**
+ * Current Environment
+ */
+const ENV &#x3D; process.env.NODE_ENV;
 
 /**
  * Main module of the application
@@ -325,19 +334,25 @@ import { MetaOptionsModule } from &#x27;./meta-options/meta-options.module&#x27;
     AuthModule,
     UsersModule,
     PostsModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: !ENV ? &#x27;.env&#x27; : &#x60;.env.${ENV}&#x60;,
+      load: [appConfig, databaseConfig],
+      validationSchema: environmentSchema,
+    }),
     TypeOrmModule.forRootAsync({
-      imports: [],
-      inject: [],
-      useFactory: () &#x3D;&gt; ({
-        type: &#x27;postgres&#x27;,
-        host: &#x27;localhost&#x27;,
-        port: 5432,
-        username: &#x27;postgres&#x27;,
-        password: &#x27;$@admin@$&#x27;,
-        database: &#x27;nestjs-blog&#x27;,
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) &#x3D;&gt; ({
         entities: [&#x27;dist/**/*.entity{.ts,.js}&#x27;],
-        autoLoadEntities: true,
-        synchronize: true,
+        type: &#x27;postgres&#x27;,
+        host: configService.get(&#x27;database.host&#x27;),
+        port: +configService.get(&#x27;database.port&#x27;),
+        username: configService.get(&#x27;database.user&#x27;),
+        password: configService.get(&#x27;database.password&#x27;),
+        database: configService.get(&#x27;database.name&#x27;),
+        autoLoadEntities: configService.get(&#x27;database.autoLoadEntities&#x27;),
+        synchronize: configService.get(&#x27;database.synchronize&#x27;),
       }),
     }),
     TagsModule,

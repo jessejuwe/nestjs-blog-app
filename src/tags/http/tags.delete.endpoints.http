@@ -1,0 +1,5 @@
+DELETE /tags/3
+Host: localhost:3000
+
+DELETE /tags/3/soft-delete
+Host: localhost:3000

@@ -123,7 +123,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Service that manages users data.</p>
+                <p>Service responsible for managing users</p>
 
             </p>
 
@@ -142,6 +142,11 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#createManyUsers" >createManyUsers</a>
+                            </li>
                             <li>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
@@ -175,12 +180,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>)</code>
+<code>constructor(dataSource: DataSource, profileConfiguration: ConfigType<>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/users/providers/users.service.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/users/providers/users.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -199,6 +204,30 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>dataSource</td>
+                                                  
+                                                        <td>
+                                                                    <code>DataSource</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>profileConfiguration</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigType&lt;&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>authService</td>
                                                   
@@ -241,6 +270,79 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="createManyUsers"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>createManyUsers</b></span>
+                        <a href="#createManyUsers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createManyUsers(createUserDto: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/users/providers/users.service.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>The method to create many users</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>createUserDto</td>
+                                            <td>
+                                                            <code><a href="../classes/CreateUserDto.html" target="_self" >CreateUserDto[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>an empty array or an array of found user</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="createUser"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
@@ -260,8 +362,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/users/providers/users.service.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/users/providers/users.service.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -326,15 +428,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(id?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, query?: <a href="../classes/GetUsersQueryDto.html" target="_self">GetUsersQueryDto</a>)</code>
+                    <code>findAll(query?: <a href="../classes/GetUsersQueryDto.html" target="_self">GetUsersQueryDto</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="66"
-                                    class="link-to-prism">src/users/providers/users.service.ts:66</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/users/providers/users.service.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -356,18 +458,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                                <td>id</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    Yes
-                                            </td>
-
-
-                                        </tr>
                                         <tr>
                                                 <td>query</td>
                                             <td>
@@ -418,8 +508,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="98"
-                                    class="link-to-prism">src/users/providers/users.service.ts:98</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/users/providers/users.service.ts:118</a></div>
                         </td>
                     </tr>
 
@@ -476,27 +566,32 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { forwardRef, Inject, Injectable } from &#x27;@nestjs/common&#x27;;
 import { BadRequestException, NotFoundException } from &#x27;@nestjs/common&#x27;;
+import { RequestTimeoutException } from &#x27;@nestjs/common&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-import { Repository } from &#x27;typeorm&#x27;;
+import { DataSource, Repository } from &#x27;typeorm&#x27;;
+import { ConfigType } from &#x27;@nestjs/config&#x27;;
 
 import { CreateUserDto } from &#x27;../dtos/create-user.dto&#x27;;
 import { GetUsersQueryDto } from &#x27;../dtos/get-users-query.dto&#x27;;
 import { User } from &#x27;../entities/user.entity&#x27;;
 import { AuthService } from &#x27;src/auth/providers/auth.service&#x27;;
+import profileConfig from &#x27;../config/profile.config&#x27;;
 
 /**
- * Service that manages users data.
- * @description Service that manages users data.
+ * Service responsible for managing users
  */
 @Injectable()
 export class UsersService {
   /**
    * Constructor of User service
-   * @description Injects AuthService and UserRepository
+   * @description Injects AuthService, UserRepository, and DataSource
    * @param authService
    * @param userRepository
    */
   constructor(
+    private readonly dataSource: DataSource,
+    @Inject(profileConfig.KEY)
+    private readonly profileConfiguration: ConfigType&lt;typeof profileConfig&gt;,
     @Inject(forwardRef(() &#x3D;&gt; AuthService))
     private readonly authService: AuthService,
     @InjectRepository(User)
@@ -505,84 +600,141 @@ export class UsersService {
 
   /**
    * The method to create a new user in the database
-   * @description The method to create a new user in the database
    * @param createUserDto
    * @returns newUser
    */
   public async createUser(createUserDto: CreateUserDto) {
+    let existingUser &#x3D; undefined;
+
     try {
-      // Check if user already exists with same email
-      const existingUser &#x3D; await this.userRepository.findOne({
+      // Connect to db to find user
+      existingUser &#x3D; await this.userRepository.findOne({
         where: { email: createUserDto.email },
       });
-
-      // TODO: Handle exception
-      if (existingUser) {
-        throw new BadRequestException(&#x27;User already exists&#x27;);
-      }
-
-      // Create User
-      let newUser &#x3D; this.userRepository.create(createUserDto);
-      newUser &#x3D; await this.userRepository.save(newUser);
-
-      return newUser;
     } catch (error) {
-      throw new BadRequestException(error);
+      // Might save the details of the exception to db or log
+      // Information which is sensitive
+      throw new RequestTimeoutException(&#x27;Unable to process request&#x27;, {
+        description: &#x27;Database connection error&#x27;,
+      });
     }
+
+    // Check if user already exists with same email
+    // Handle exception
+    if (existingUser) {
+      throw new BadRequestException(&#x27;User already exists. Use another email.&#x27;);
+    }
+
+    // Create User
+    let newUser &#x3D; this.userRepository.create(createUserDto);
+
+    try {
+      // Connect to db to save new user
+      newUser &#x3D; await this.userRepository.save(newUser);
+    } catch (error) {
+      throw new RequestTimeoutException(&#x27;Unable to save user&#x27;, {
+        description: &#x27;Database connection error&#x27;,
+      });
+    }
+
+    return newUser;
   }
 
   /**
    * The method to get all users form the database
-   * @description The method to get all users form the database
    * @param id
    * @param page
    * @param limit
    * @returns an object containing data and message
    */
-  public async findAll(id?: number, query?: GetUsersQueryDto) {
+  public async findAll(query?: GetUsersQueryDto) {
     const { page, limit } &#x3D; query;
 
-    try {
-      if (id) {
-        const response &#x3D; await this.findOneById(id);
-        return response;
-      }
+    let foundUsers: User[] &#x3D; [];
 
+    try {
       const [users] &#x3D; await this.userRepository.findAndCount({
         skip: (page - 1) * limit,
         take: limit,
       });
 
-      if (!users.length) {
-        throw new NotFoundException(&#x27;No users found&#x27;);
-      }
-
-      const data &#x3D; users.slice((page - 1) * limit, page * limit);
-
-      return data;
+      foundUsers &#x3D; users;
     } catch (error) {
-      throw new BadRequestException(error);
+      throw new RequestTimeoutException(&#x27;Unable to process request&#x27;, {
+        description: &#x27;Database connection error&#x27;,
+      });
     }
+
+    if (!foundUsers.length) {
+      throw new NotFoundException(&#x27;Adjust page and limit query&#x27;, {
+        description: &#x27;Users not found&#x27;,
+      });
+    }
+
+    const data &#x3D; foundUsers.slice((page - 1) * limit, page * limit);
+
+    return data;
   }
 
   /**
    * The method to find a single user by ID
-   * @description The method to find a single user by ID
    * @param id
    * @returns an empty array or an array of found user
    */
   public async findOneById(id: number) {
+    let user &#x3D; undefined;
+
     try {
-      const user &#x3D; await this.userRepository.findOneBy({ id });
-
-      if (!user) {
-        throw new NotFoundException(&#x27;No user found&#x27;);
-      }
-
-      return user;
+      user &#x3D; await this.userRepository.findOneBy({ id });
     } catch (error) {
-      throw new BadRequestException(error);
+      throw new RequestTimeoutException(&#x27;Unable to process request&#x27;, {
+        description: &#x27;Database connection error&#x27;,
+      });
     }
+
+    if (!user) {
+      throw new NotFoundException(&#x27;User id does not exist&#x27;);
+    }
+
+    return user;
+  }
+
+  /**
+   * The method to create many users
+   * @param email
+   * @returns an empty array or an array of found user
+   */
+  public async createManyUsers(createUserDto: CreateUserDto[]) {
+    // Create a QueryRunner instance
+    const queryRunner &#x3D; this.dataSource.createQueryRunner();
+
+    // Connect QueryRunner to database
+    await queryRunner.connect();
+
+    // Begin transaction
+    await queryRunner.startTransaction();
+
+    let newUsers: User[] &#x3D; [];
+
+    try {
+      createUserDto.forEach(async (user) &#x3D;&gt; {
+        newUsers &#x3D; this.userRepository.create(createUserDto);
+        const newUser &#x3D; queryRunner.manager.create(User, user);
+        const result &#x3D; await queryRunner.manager.save(newUser);
+        newUsers.push(result);
+      });
+
+      // Commit if successful
+      await queryRunner.commitTransaction();
+    } catch (error) {
+      // Rollback if unsuccessful
+      await queryRunner.rollbackTransaction();
+    } finally {
+      // Release QueryRunner connection
+      await queryRunner.release();
+    }
+
+    return newUsers;
   }
 }
 </code></pre>

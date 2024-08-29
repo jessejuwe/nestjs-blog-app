@@ -3,15 +3,15 @@ Host: localhost:3000
 Content-Type: application/json
 
 {
-    "title": "New Post 5",
+    "title": "New Post 7",
     "postType": "post",
-    "slug": "new-post-5",
+    "slug": "new-post-7",
     "status": "draft",
-    "content": "This is the content of the post 5.",
+    "content": "This is the content of the post 7.",
     "schema": "{\r\n    \"@context\": \"https:\/\/schema.org\",\r\n    \"@type\": \"Person\"\r\n  }",
     "featuredImageURL": "http://localhost.com/images/image1.jpg",
     "publishOn": "2024-03-16T07:46:32+0000",
-    "tags": [1],
+    "tags": [1, 2, 3],
     "metaOptions": {
         "metaValue": "{\"sidebarEnabled\": true, \"footerActive\": true}"
     },

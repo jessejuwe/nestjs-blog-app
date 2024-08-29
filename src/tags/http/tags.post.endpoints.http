@@ -3,7 +3,7 @@ Host: localhost:3000
 Content-Type: application/json
 
 {
-    "name": "typescript",
-    "slug": "typescript",
-    "description": "A programming language"
+    "name": "fortran",
+    "slug": "fortran",
+    "description": "A dead programming language"
 }

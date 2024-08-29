@@ -1,5 +1,21 @@
+{{
+    const date = new Date();
+    exports.startDate = date.toString();
+    exports.endDate = date.toString();
+}}
+
 GET /posts 
 Host: localhost:3000
 
-GET /posts/3
+GET /posts 
+Host: localhost:3000
+?startDate={{startDate}}
+&endDate={{endDate}}
+&limit=10
+&page=1
+
+GET /posts/7
+Host: localhost:3000
+
+GET /posts/user/3
 Host: localhost:3000
