@@ -3,11 +3,10 @@ Host: localhost:3000
 Content-Type: application/json
 
 {
-    "firstName": "Jane",
-    "lastName": "Doe",
-    "email": "jane.doe@example.com",
-    "password": "password123#",
-    "isAuth": false
+    "firstName": "Jesse",
+    "lastName": "Juwe",
+    "email": "jesse.juwe@gotrustcrow.com",
+    "password": "$@ltyD0g"
 }
 
 POST /users/create-many

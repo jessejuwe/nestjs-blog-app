@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsEmail, IsBoolean } from 'class-validator';
+import { IsString, IsEmail } from 'class-validator';
 import { IsNotEmpty, IsOptional } from 'class-validator';
 import { Matches, MaxLength, MinLength } from 'class-validator';
 
@@ -76,20 +76,4 @@ export class CreateUserDto {
       'Minimum eight characters, at least one letter, one number and one special character',
   })
   password: string;
-
-  /**
-   * User authentication status
-   * @description User authentication status
-   * @type {boolean}
-   * @example false
-   * @default false
-   * @optional true
-   */
-  @ApiPropertyOptional({
-    description: 'User authentication status',
-    example: false,
-  })
-  @IsOptional()
-  @IsBoolean()
-  isAuth?: boolean;
 }

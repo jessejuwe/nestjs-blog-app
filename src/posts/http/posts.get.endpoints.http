@@ -6,12 +6,12 @@
 
 GET /posts 
 Host: localhost:3000
-
-GET /posts 
-Host: localhost:3000
 ?startDate={{startDate}}
 &endDate={{endDate}}
-&limit=10
+
+GET /posts
+Host: localhost:3000
+?limit=3
 &page=1
 
 GET /posts/7

@@ -1,9 +1,10 @@
 import { Controller, Param, Query } from '@nestjs/common';
+import { ClassSerializerInterceptor, UseInterceptors } from '@nestjs/common';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { Body, Delete, Get, Patch, Post } from '@nestjs/common';
+import { ParseIntPipe } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ApiBody, ApiParam, ApiQuery } from '@nestjs/swagger';
-import { ParseIntPipe } from '@nestjs/common';
 
 import { CreateUserDto } from './dtos/create-user.dto';
 import { CreateManyUsersDto } from './dtos/create-many-users.dto';
@@ -12,10 +13,15 @@ import { GetUsersQueryDto } from './dtos/get-users-query.dto';
 import { PatchUserDto } from './dtos/patch-user.dto';
 import { UsersService } from './providers/users.service';
 
+import { createSuccessResponse } from 'src/common/response/util/success-response.util';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
+
 /**
  * Controller responsible for handling users data
  */
 @Controller('users')
+@UseInterceptors(ClassSerializerInterceptor)
 @ApiTags('Users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -36,7 +42,7 @@ export class UsersController {
     description: 'User Query DTO',
     example: { page: 1, limit: 10 },
   })
-  public getUsers(@Query() getUsersQueryDto?: GetUsersQueryDto) {
+  public getUsers(@Query() getUsersQueryDto: GetUsersQueryDto) {
     return this.usersService.findAll(getUsersQueryDto);
   }
 
@@ -47,6 +53,7 @@ export class UsersController {
    * @returns User
    */
   @Get(':id')
+  @Auth(AuthType.None)
   @ApiOperation({ summary: 'Get a user with id' })
   @ApiResponse({ status: 200, description: 'Users fetched successfully' })
   @ApiParam({
@@ -56,8 +63,9 @@ export class UsersController {
     description: 'User Param DTO',
     example: { id: 1 },
   })
-  public getUser(@Param() getUsersParamDto: GetUsersParamDto) {
-    return this.usersService.findOneById(getUsersParamDto.id);
+  public async getUser(@Param() getUsersParamDto: GetUsersParamDto) {
+    const user = await this.usersService.findOneById(getUsersParamDto.id);
+    return createSuccessResponse('User fetched successfully', true, user);
   }
 
   /**
@@ -67,6 +75,7 @@ export class UsersController {
    * @returns response
    */
   @Post()
+  @Auth(AuthType.None)
   @ApiOperation({ summary: 'Create a new user' })
   @ApiResponse({ status: 201, description: 'User created successfully' })
   @ApiBody({
@@ -74,8 +83,9 @@ export class UsersController {
     type: CreateUserDto,
     description: 'Create User DTO',
   })
-  public createUser(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.createUser(createUserDto);
+  public async createUser(@Body() createUserDto: CreateUserDto) {
+    const user = await this.usersService.createUser(createUserDto);
+    return createSuccessResponse('User created successfully', true, user);
   }
 
   /**
@@ -89,8 +99,8 @@ export class UsersController {
   @ApiResponse({ status: 201, description: 'Users created successfully' })
   @ApiBody({
     required: true,
-    type: CreateUserDto,
-    description: 'Create User DTO',
+    type: CreateManyUsersDto,
+    description: 'Create many users DTO',
   })
   public createManyUsers(@Body() createManyUsersDto: CreateManyUsersDto) {
     return this.usersService.createManyUsers(createManyUsersDto);
@@ -110,8 +120,9 @@ export class UsersController {
     type: PatchUserDto,
     description: 'Patch User DTO',
   })
-  public patchUser(@Body() patchUserDto: PatchUserDto) {
-    return patchUserDto;
+  public async patchUser(@Body() patchUserDto: PatchUserDto) {
+    const user = await this.usersService.updateUser(patchUserDto);
+    return createSuccessResponse('User updated successfully', true, user);
   }
 
   /**
@@ -141,8 +152,8 @@ export class UsersController {
    * @returns response
    */
   @Delete(':id/soft-delete')
+  @Auth(AuthType.None)
   @ApiOperation({ summary: 'Soft delete a user' })
-  @ApiResponse({ status: 200, description: 'User deleted successfully' })
   @ApiParam({
     name: 'id',
     required: true,

@@ -1,5 +1,9 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
-import { BadRequestException, NotFoundException } from '@nestjs/common';
+
+import { RefreshTokensProvider } from './refresh-tokens.provider';
+import { SignInProvider } from './sign-in.provider';
+import { RefreshTokenDto } from '../dtos/refresh-token.dto';
+import { SignInDto } from '../dtos/signin.dto';
 
 import { UsersService } from 'src/users/providers/users.service';
 
@@ -11,9 +15,10 @@ export class AuthService {
   /**
    * Constructor of Auth service
    * @description Injects UsersService
-   * @param usersService
    */
   constructor(
+    private readonly signInProvider: SignInProvider,
+    private readonly refreshTokenProvider: RefreshTokensProvider,
     @Inject(forwardRef(() => UsersService))
     private readonly usersService: UsersService,
   ) {}
@@ -24,28 +29,11 @@ export class AuthService {
     return null;
   }
 
-  public async login(user: any) {
-    try {
-      const foundUser = this.usersService.findAll(user?.id);
-
-      return { data: foundUser, token: 'SAMPLE_TOKEN' };
-    } catch (error) {
-      throw new BadRequestException('Login credentials are incorrect');
-    }
+  public async signIn(signInDto: SignInDto) {
+    return await this.signInProvider.signIn(signInDto);
   }
 
-  public async isAuth(userId: number) {
-    try {
-      const user = await this.usersService.findOneById(userId);
-
-      if (!user) {
-        throw new NotFoundException('User not found');
-      }
-
-      const isAuth = user.isAuth;
-      return isAuth;
-    } catch (error) {
-      throw new BadRequestException('User not found');
-    }
+  public async refreshTokens(refreshTokenDto: RefreshTokenDto) {
+    return await this.refreshTokenProvider.refreshTokens(refreshTokenDto);
   }
 }

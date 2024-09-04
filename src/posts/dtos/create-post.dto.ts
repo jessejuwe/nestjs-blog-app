@@ -185,13 +185,4 @@ export class CreatePostDto {
   @ValidateNested({ each: true })
   @Type(() => CreatePostMetaOptionsDto)
   readonly metaOptions?: CreatePostMetaOptionsDto | null;
-
-  /**
-   * ID of post author
-   * @example 1
-   */
-  @ApiProperty({ type: 'integer', required: true, example: 1 })
-  @IsInt()
-  @IsNotEmpty()
-  readonly authorId: number;
 }

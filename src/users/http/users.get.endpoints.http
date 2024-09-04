@@ -1,8 +1,9 @@
 ### Get All Users
 GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoiam9obmRvZUBleGFtcGxlLmNvbSIsImlhdCI6MTcyNTM2MDA5OSwiZXhwIjoxNzI1MzYzNjk5LCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.knRqgs_Ze6t8yINVQ-wan4IEtyP9g2xMNWvVhqDyjDM
 
 ### Get User by ID (and or query)
-GET http://localhost:3000/users/4
+GET http://localhost:3000/users/150
 
 ### Get Users by query
 GET http://localhost:3000/users

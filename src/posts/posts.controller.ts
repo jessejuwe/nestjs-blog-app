@@ -9,6 +9,9 @@ import { GetPostsQueryDto } from './dtos/get-post-query.dto';
 import { PatchPostDto } from './dtos/patch-post.dto';
 import { PostsService } from './providers/posts.service';
 
+import { IActiveUser } from 'src/auth/interfaces/active-user.interface';
+import { ActiveUser } from 'src/auth/decorators/active-user.decorator';
+
 /**
  * Controller responsible for handling posts data
  */
@@ -81,8 +84,11 @@ export class PostsController {
     type: CreatePostDto,
     description: 'Create Post DTO',
   })
-  public createPost(@Body() createPostDto: CreatePostDto) {
-    return this.postsService.create(createPostDto);
+  public createPost(
+    @Body() createPostDto: CreatePostDto,
+    @ActiveUser() user: IActiveUser,
+  ) {
+    return this.postsService.create(createPostDto, user);
   }
 
   /**

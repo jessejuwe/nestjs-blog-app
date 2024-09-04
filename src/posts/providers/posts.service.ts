@@ -7,14 +7,17 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
+import { CreatePostProvider } from './create-post.provider';
 import { CreatePostDto } from '../dtos/create-post.dto';
 import { GetPostsQueryDto } from '../dtos/get-post-query.dto';
 import { PatchPostDto } from '../dtos/patch-post.dto';
 import { Post } from '../entities/post.entity';
 
 import { UsersService } from 'src/users/providers/users.service';
-import { MetaOption } from 'src/meta-options/entities/meta-option.entity';
 import { TagsService } from 'src/tags/providers/tags.service';
+import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
+import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
+import { IActiveUser } from 'src/auth/interfaces/active-user.interface';
 
 /**
  * Service responsible for managing posts
@@ -23,19 +26,18 @@ import { TagsService } from 'src/tags/providers/tags.service';
 export class PostsService {
   /**
    * Constructor of Posts service
-   * @description Injects UsersService, PostRepository and MetaOptionRepository
+   * @description Injects UsersService, TagsService, PostRepository and PaginationProvider
    * @param usersService
    * @param postsRepository
-   * @param metaOptionRepository
    */
   constructor(
     private readonly usersService: UsersService,
     private readonly tagsService: TagsService,
+    private readonly createPostProvider: CreatePostProvider,
+    private readonly paginationProvider: PaginationProvider,
 
     @InjectRepository(Post)
     private readonly postsRepository: Repository<Post>,
-    @InjectRepository(MetaOption)
-    private readonly metaOptionRepository: Repository<MetaOption>,
   ) {}
 
   /**
@@ -43,22 +45,8 @@ export class PostsService {
    * @param createPostDto
    * @returns Post
    */
-  public async create(createPostDto: CreatePostDto) {
-    try {
-      // Find author based on authorId from database
-      const author = await this.usersService.findOneById(createPostDto.authorId); // prettier-ignore
-
-      // Find tags
-      const tags = await this.tagsService.findMultipleTags(createPostDto.tags);
-
-      // Create post
-      const post = this.postsRepository.create({ ...createPostDto, author, tags }); // prettier-ignore
-
-      // Return post
-      return await this.postsRepository.save(post);
-    } catch (error) {
-      throw new BadRequestException(error);
-    }
+  public async create(createPostDto: CreatePostDto, user: IActiveUser) {
+    return await this.createPostProvider.create(createPostDto, user);
   }
 
   /**
@@ -66,33 +54,19 @@ export class PostsService {
    * @param query GetPostsQueryDto for getting queries
    * @returns Post[]
    */
-  public async findAll(query: GetPostsQueryDto) {
-    const { page, limit } = query;
-
-    let foundPosts: Post[] = [];
+  public async findAll(query: GetPostsQueryDto): Promise<Paginated<Post>> {
+    const { limit, page } = query;
 
     try {
-      const [posts] = await this.postsRepository.findAndCount({
-        relations: { metaOptions: true, author: true, tags: true }, // ALTERNATIVE: to eager loading in entity
-        skip: (page - 1) * limit,
-        take: limit,
-      });
-
-      foundPosts = posts;
+      // prettier-ignore
+      const posts = await this.paginationProvider.paginateQuery({ limit, page }, this.postsRepository);
+      return posts;
     } catch (error) {
       console.error(error);
       throw new RequestTimeoutException('Unable to process request', {
         description: 'Database connection error',
       });
     }
-
-    if (!foundPosts) {
-      throw new NotFoundException('Adjust page and limit query', {
-        description: 'Posts not found',
-      });
-    }
-
-    return foundPosts;
   }
 
   /**

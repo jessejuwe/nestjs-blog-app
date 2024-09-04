@@ -1,2 +1,5 @@
+DELETE /users/16
+Host: localhost:3000
+
 DELETE /users/1/soft-delete
 Host: localhost:3000

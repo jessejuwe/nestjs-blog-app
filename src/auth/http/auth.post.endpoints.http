@@ -1,0 +1,40 @@
+### Register User Endpoint ###
+
+POST /auth/register
+Host: localhost:3000
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "phoneNumber": "08012345678",
+    "password": "Password123@",
+    "confirmPassword": "Password123@"
+}
+
+### Sign In User Endpoint ###
+
+POST /auth/sign-in
+Host: localhost:3000
+Content-Type: application/json
+
+{
+    "email": "johndoe@example.com",
+    "password": "password123@"
+}
+
+### Refresh User Token Endpoint ###
+
+POST /auth/refresh-tokens
+Host: localhost:3000
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImlhdCI6MTcyNTI4NjAyNywiZXhwIjoxNzI1MzcyNDI3LCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.HCdtDy5vGQr4Ws_4gsOh1J7d4VZzQOecUBSCXrPIF1E"
+}
+
+### Logout User Endpoint ###
+
+POST /auth/logout
+Host: localhost:3000
+Authorization: Bearer <access_token>

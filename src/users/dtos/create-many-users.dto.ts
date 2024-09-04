@@ -23,7 +23,22 @@ export class CreateManyUsersDto {
     required: true,
     description: 'Array of Users',
     items: { type: 'User' },
-    example: [CreateUserDto, CreateUserDto],
+    example: [
+      {
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john.doe@example.com',
+        password: 'Password123@',
+        isAuth: false,
+      },
+      {
+        firstName: 'Jane',
+        lastName: 'Doe',
+        email: 'janedoe@example.com',
+        password: 'Password123#',
+        isAuth: true,
+      },
+    ],
   })
   @IsArray()
   @IsNotEmpty()
